@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CoursesService {
 
-  private API = '../../../assets/acourses.json';
+  private API = '../../../assets/courses.json';
 
   constructor(private httpClient : HttpClient) {  }
 
