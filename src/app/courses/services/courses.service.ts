@@ -1,3 +1,4 @@
+import { Observable, delay } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 import { Course } from '../model/course';
@@ -7,9 +8,14 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class CoursesService {
-  constructor(private httpCliente : HttpClient) {}
 
-  list(): Course[] {
-    return [{ _id: '1', name: 'Angular', category: 'front-end' }, {_id: '2', name: 'TypeScript', category: 'back-end'}];
+  private API = '../../../assets/acourses.json';
+
+  constructor(private httpClient : HttpClient) {  }
+
+  list(): Observable<Course[]> {
+    return this.httpClient.get<Course[]>(this.API).pipe(
+      delay(500)
+    );
   }
 }
