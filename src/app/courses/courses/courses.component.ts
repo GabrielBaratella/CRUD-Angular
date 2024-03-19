@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { CategoryPipe } from 'src/app/shared/pipes/category.pipe';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -21,11 +22,12 @@ export class CoursesComponent {
 
   courses$: Observable<Course[]>;
 
-  displayedColumns = ['name', 'category'];
+  displayedColumns = ['name', 'category', 'actions'];
 
   constructor(
     private courseService: CoursesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {
 
     this.courses$ = this.courseService.list()
@@ -43,5 +45,7 @@ export class CoursesComponent {
     });
   }
 
-
+  onAdd(){
+    console.log("onAdd")
+  }
 }
